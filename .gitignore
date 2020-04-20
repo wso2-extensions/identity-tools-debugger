@@ -21,3 +21,30 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+#target files
+modules/server-endpoints/language-server/target
+
+#nodemodules
+node_modules
+identity-lsp-root-1.0.0.vsix
+#out
+out
+
+*.idea
+
+# Ignore everything in this directory
+target
+.classpath
+.settings
+.project
+*.iml
+*.iws
+*.ipr
+.idea
+.DS_Store
+
+init.json
+iamctl.json
+Extension Development Host
