@@ -27,6 +27,10 @@ public class DAPConstants {
     public static final String HTTP_SERVLET_RESPONSE = "HttpServletResponse";
     public static final String SAML_REQUEST = "SAMLRequest";
     public static final String SAML_RESPONSE = "SAMLResponse";
+    public static final String OIDC_AUTHZ_REQUEST = "OIDCAuthzRequest";
+    public static final String OIDC_AUTHZ_RESPONSE = "OIDCAuthzResponse";
+    public static final String OIDC_TOKEN_REQUEST = "OIDCTokenRequest";
+    public static final String OIDC_TOKEN_RESPONSE = "OIDCTokenResponse";
 
     public static final String SAML_ENTRY_CLASS = "org/wso2/carbon/identity/sso/saml/servlet/SAMLSSOProviderServlet";
     public static final String SAML_ENTRY_METHOD = "doPost";
@@ -38,6 +42,41 @@ public class DAPConstants {
     public static final String SAML_EXIT_SIGNATURE = "(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/" +
             "HttpServletResponse;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;" +
             "Ljava/lang/String;Ljava/lang/String;)V";
+
+    public static final String OIDC_TOKEN_CLASS = "org/wso2/carbon/identity/oauth/endpoint/token/OAuth2TokenEndpoint";
+    public static final String OIDC_TOKEN_REQUEST_METHOD = "buildCarbonOAuthTokenRequest";
+    public static final String OIDC_TOKEN_REQUEST_SIGNATURE = "(Ljavax/servlet/http/HttpServletRequestWrapper;)Lorg/" +
+            "wso2/carbon/identity/oauth2/model/CarbonOAuthTokenRequest;";
+    public static final String OIDC_TOKEN_RESPONSE_METHOD = "buildTokenResponse";
+    public static final String OIDC_TOKEN_RESPONSE_SIGNATURE = "(Lorg/wso2/carbon/identity/oauth2/dto/" +
+            "OAuth2AccessTokenRespDTO;)Ljavax/ws/rs/core/Response;";
+
+    public static final String OIDC_AUTHZ_CLASS = "org/wso2/carbon/identity/oauth/endpoint/authz" +
+            "/OAuth2AuthzEndpoint";
+    public static final String OIDC_AUTHZ_REQUEST_METHOD = "handleInitialAuthorizationRequest";
+    public static final String OIDC_AUTHZ_REQUEST_SIGNATURE = "(Lorg/wso2/carbon/identity/oauth/endpoint/message/" +
+            "OAuthMessage;)Ljavax/ws/rs/core/Response;";
+    public static final String OIDC_AUTHZ_RESPONSE_METHOD = "manageOIDCSessionState";
+    public static final String OIDC_AUTHZ_RESPONSE_SIGNATURE = "(Ljavax/servlet/http/HttpServletRequest;" +
+            "Ljavax/servlet/http/HttpServletResponse;Lorg/wso2/carbon/identity/oidc/session/OIDCSessionState;" +
+            "Lorg/wso2/carbon/identity/oauth2/model/OAuth2Parameters;Ljava/lang/String;Ljava/lang/String;)" +
+            "Ljava/lang/String;";
+
+    public static final String OAUTH_MESSAGE_CLIENT_ID = "client_id";
+    public static final String OAUTH_MESSAGE_REQUEST = "request";
+    public static final String OAUTH_MESSAGE_RESPONSE = "response";
+    public static final String OAUTH_MESSAGE_FORCE_AUTHENTICATE = "forceAuthenticate";
+    public static final String OAUTH_MESSAGE_IS_PASSIVE_AUTHENTICATION = "isPassiveAuthentication";
+    public static final String OAUTH_MESSAGE_SESSION_DATA_KEY = "sessionDataKey";
+    public static final String OAUTH_MESSAGE_SESSION_DATA_KEY_CONSENT = "sessionDataKeyConsent";
+    public static final String OAUTH_RESPONSE_TYPE = "response_type";
+    public static final String OAUTH_CALLBACK_URI = "redirect_uri";
+    public static final String OAUTH_SCOPE = "scope";
+    public static final String ID_TOKEN = "idToken";
+    public static final String ID_TOKEN_DECODED = "idTokenDecoded";
+    public static final String JWT_HEADER = "HEADER";
+    public static final String JWT_PAYLOAD = "PAYLOAD";
+    public static final String JWT_SIGNATURE = "SIGNATURE";
 
     public static final String DEBUG_CONTINUE = "continue";
     public static final String DEBUG_CONNECTED = "connected";
@@ -79,10 +118,17 @@ public class DAPConstants {
     public static final String JSON_KEY_FOR_SOURCE_MODIFIED = "sourceModified";
     public static final String JSON_KEY_FOR_UNKNOWN = "unknown";
     public static final String JSON_KEY_FOR_REQ_SEQ = "request_seq";
+    public static final String JSON_KEY_FOR_REQUEST_PARAMETER = "requestParameters";
+    public static final String JSON_KEY_FOR_HTTP_REQUEST_HEADERS = "httpRequestHeaders";
 
     public static final String VARIABLE_TYPE_STRING = "String";
     public static final String VARIABLE_TYPE_OBJECT = "Object";
     public static final String VARIABLE_TYPE_UNKNOWN = "Unknown";
 
     public static final String JSON_RPC_VERSION = "2.0";
+    public static final String OAUTH_ASSERTION = "assertion";
+    public static final String WINDOWS_TOKEN = "windows_token";
+    public static final String OAUTH_PKCE_CODE_VERIFIER = "code_verifier";
+    public static final String CLIENT_AUTHN_CONTEXT = "oauth.client.authentication.context";
+
 }
