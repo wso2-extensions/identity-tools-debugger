@@ -1,24 +1,28 @@
 package org.wso2.carbon.identity.developer.lsp.completion;
 
+/**
+ * The class contains the keywords.
+ */
 public class Keywords {
-    String[] function_keyword = new String[]{"Function", "function ${1:functionName} (){\n\t\n}"};
 
-    String[] if_keyword = new String[]{"If", "if (true) {\n\t\n}"};
+    String[] functionKeyword = new String[]{"Function", "function ${1:functionName} (){\n\t\n}"};
 
-    String[] try_keyword = new String[]{"Try", "try {\n\t\n}catch(err) {\nconsole.log(err)\n}"};
+    String[] ifKeyword = new String[]{"If", "if (true) {\n\t\n}"};
 
-    String[] class_keyword = new String[]{"Class", "class ClassName {\n" +
+    String[] tryKeyword = new String[]{"Try", "try {\n\t\n}catch(err) {\nconsole.log(err)\n}"};
+
+    String[] classKeyword = new String[]{"Class", "class ClassName {\n" +
             "  constructor() {\n" +
             "  }\n" +
             "}"};
 
-    String[] for_keyword = new String[]{"For", "for (var i = 0; i < 10; i++) {\n\t\n}"};
+    String[] forKeyword = new String[]{"For", "for (var i = 0; i < 10; i++) {\n\t\n}"};
 
-    String[] while_keyword = new String[]{"While", "while (true) {\n\t\n}"};
+    String[] whileKeyword = new String[]{"While", "while (true) {\n\t\n}"};
 
-    String[] do_keyword =  new String[]{"Do", "do {\n\t\n}}while (true);"};
+    String[] doKeyword = new String[]{"Do", "do {\n\t\n}}while (true);"};
 
-    String[] switch_keyword = new String[]{"Switch", "switch(expression) {\n" +
+    String[] switchKeyword = new String[]{"Switch", "switch(expression) {\n" +
             "            case x:\n" +
             "                // code block\n" +
             "                break;\n" +
@@ -29,48 +33,45 @@ public class Keywords {
             "                // code block\n" +
             "        }"};
 
-    String[] catch_keyword = new String[]{"Catch","catch(err) {\nconsole.log(err);\n}"};
+    String[] catchKeyword = new String[]{"Catch", "catch(err) {\nconsole.log(err);\n}"};
 
-    String[] constructor_keyword = new String[]{"Constructor", "constructor()(){\n\t\n}"};
+    String[] constructorKeyword = new String[]{"Constructor", "constructor()(){\n\t\n}"};
 
-    String[] extends_keyword =  new String[]{"Extends", "extends"};
+    String[] extendsKeyword = new String[]{"Extends", "extends"};
 
-    String[] implements_keyword =new String[]{"Implements", "implements"};
+    String[] implementsKeyword = new String[]{"Implements", "implements"};
 
-    String[] var_keyword = new String[]{"Var", "var"};
+    String[] varKeyword = new String[]{"Var", "var"};
 
-    String[] let_keyword = new String[]{"Let", "let"};
+    String[] letKeyword = new String[]{"Let", "let"};
 
-    String[] const_keyword = new String[]{"Const", "const"};
+    String[] constKeyword = new String[]{"Const", "const"};
 
-    String[] static_keyword = new String[]{"Static", "static"};
+    String[] staticKeyword = new String[]{"Static", "static"};
 
-    String[] private_keyword = new String[]{"Private", "private"};
+    String[] privateKeyword = new String[]{"Private", "private"};
 
-    String[] public_keyword =  new String[]{"Public", "public"};
+    String[] publicKeyword = new String[]{"Public", "public"};
 
-    String[] return_keyword = new String[]{"Return", "return"};
+    String[] returnKeyword = new String[]{"Return", "return"};
 
-    String[] break_keyword = new String[]{"Break", "break"};
+    String[] breakKeyword = new String[]{"Break", "break"};
 
-    String[] continue_keyword = new String[]{"Continue", "continue"};
+    String[] continueKeyword = new String[]{"Continue", "continue"};
 
-    String[] debugger_keyword =  new String[]{"Debugger","debugger"};
+    String[] debuggerKeyword = new String[]{"Debugger", "debugger"};
 
-    String[] finally_keyword = new String[]{"Finally","finally {\n\n}"};
+    String[] finallyKeyword = new String[]{"Finally", "finally {\n\n}"};
 
-    String[] throw_keyword = new String[]{"Throw","throw "};
+    String[] throwKeyword = new String[]{"Throw", "throw "};
 
-    String[] default_keyword =  new String[]{"Default" , "default:\n\t\n\tbreak;"};
+    String[] defaultKeyword = new String[]{"Default", "default:\n\t\n\tbreak;"};
 
-    String[] case_keyword =  new String[]{"Case" , "case:\n\t\n\tbreak;"};
+    String[] caseKeyword = new String[]{"Case", "case:\n\t\n\tbreak;"};
 
-    String[] null_keyword =  new String[]{"Null" , "null"};
+    String[] nullKeyword = new String[]{"Null", "null"};
 
-    String[] true_keyword =  new String[]{"True" , "true"};
+    String[] trueKeyword = new String[]{"True", "true"};
 
-    String[] false_keyword =  new String[]{"False" , "false"};
-
-    String[] instanceOf_Keyword = new String[]{"InstanceOf", "instanceOf"};
-
+    String[] falseKeyword = new String[]{"False", "false"};
 }

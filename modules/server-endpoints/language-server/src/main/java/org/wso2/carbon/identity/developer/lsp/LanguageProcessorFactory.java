@@ -24,6 +24,9 @@ import org.wso2.carbon.identity.jsonrpc.Request;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  The Class for getting proper language processor.
+ */
 public class LanguageProcessorFactory {
 
     private Map<String, LanguageProcessor> languageProcessorMap = new HashMap<String, LanguageProcessor>();

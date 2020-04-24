@@ -31,8 +31,10 @@ public class MethodEntryListener {
     /**
      * This method will be injected by {@link InterceptingClassTransformer} upon matching the method name and signature.
      *
+     * @param className  The class name which was called.
      * @param methodName The method name which was called.
-     * @param signature  The signature of the method being called
+     * @param signature  The signature of the method being called.
+     * @param sig        The types of the arguments.
      * @param args       The arguments (values) of the method.
      */
     public static void methodEntered(String className, String methodName, String signature,
