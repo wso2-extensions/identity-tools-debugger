@@ -79,7 +79,6 @@ public class InterceptingClassTransformer implements ClassFileTransformer {
      * @param classfileBuffer     The input byte buffer in class file format - Have to be instrumented.
      * @return The transformed byte code.
      * @throws IllegalClassFormatException The IllegalClassFormat Exception.
-     * @implSpec The default implementation returns null.
      */
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
