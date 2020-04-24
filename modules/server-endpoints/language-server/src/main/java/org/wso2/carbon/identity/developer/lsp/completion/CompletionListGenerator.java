@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2020, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.wso2.carbon.identity.developer.lsp.completion;
 
 import com.google.gson.JsonArray;
@@ -16,7 +34,7 @@ public class CompletionListGenerator {
     private HashMap<String, JsonArray> keywordsMap;
 
     public CompletionListGenerator() {
-        keywordsMap = new HashMap<String, JsonArray>();
+        keywordsMap = new HashMap<>();
     }
 
     public void setJsFunctionRegistry(JsFunctionRegistry jsFunctionRegistry) {
@@ -50,87 +68,87 @@ public class CompletionListGenerator {
             switch (scope) {
                 case "program":
                     HashMap<String, String[]> program = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
 
                     }};
                     keywordsMap.put(scope, generateArray(program));
                     break;
                 case "sourceelement":
                     HashMap<String, String[]> sourceElement = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("return", keywords.return_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("return", keywords.returnKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(sourceElement));
                     break;
                 case "statement":
                     HashMap<String, String[]> statement = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("return", keywords.return_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("return", keywords.returnKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(statement));
                     break;
                 case "block":
                     HashMap<String, String[]> block = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("continue", keywords.continue_keyword);
-                        put("break", keywords.break_keyword);
-                        put("return", keywords.return_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("continue", keywords.continueKeyword);
+                        put("break", keywords.breakKeyword);
+                        put("return", keywords.returnKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(block));
                     break;
                 case "statementlist":
                     HashMap<String, String[]> statementList = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(statementList));
                     break;
@@ -142,17 +160,17 @@ public class CompletionListGenerator {
                     break;
                 case "variabledeclarationlist":
                     HashMap<String, String[]> variableDeclarationList = new HashMap<String, String[]>() {{
-                        put("true", keywords.true_keyword);
-                        put("false", keywords.false_keyword);
-                        put("null", keywords.null_keyword);
+                        put("true", keywords.trueKeyword);
+                        put("false", keywords.falseKeyword);
+                        put("null", keywords.nullKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(variableDeclarationList));
                     break;
                 case "variabledeclaration":
                     HashMap<String, String[]> variableDeclaration = new HashMap<String, String[]>() {{
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(variableDeclaration));
                     break;
@@ -164,57 +182,57 @@ public class CompletionListGenerator {
                     break;
                 case "expressionstatement":
                     HashMap<String, String[]> expressionStatement = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(expressionStatement));
                     break;
                 case "ifstatement":
                     HashMap<String, String[]> ifStatement = new HashMap<String, String[]>() {{
-                        put("if", keywords.if_keyword);
+                        put("if", keywords.ifKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(ifStatement));
                     break;
                 case "iterationstatement":
                     HashMap<String, String[]> iterationStatement = new HashMap<String, String[]>() {{
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(iterationStatement));
                     break;
                 case "varmodifier":
                     HashMap<String, String[]> varModifier = new HashMap<String, String[]>() {{
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(varModifier));
                     break;
                 case "continuestatement":
                     HashMap<String, String[]> continueStatement = new HashMap<String, String[]>() {{
-                        put("continue", keywords.continue_keyword);
+                        put("continue", keywords.continueKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(continueStatement));
                     break;
                 case "breakstatement":
                     HashMap<String, String[]> breakStatement = new HashMap<String, String[]>() {{
-                        put("break", keywords.break_keyword);
+                        put("break", keywords.breakKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(breakStatement));
                     break;
                 case "returnstatement":
                     final HashMap<String, String[]> returnStatement = new HashMap<String, String[]>() {{
-                        put("return", keywords.return_keyword);
+                        put("return", keywords.returnKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(returnStatement));
                     break;
@@ -232,22 +250,22 @@ public class CompletionListGenerator {
                     break;
                 case "caseblock":
                     HashMap<String, String[]> caseBlock = new HashMap<String, String[]>() {{
-                        put("case", keywords.case_keyword);
+                        put("case", keywords.caseKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(caseBlock));
                     break;
                 case "caseclauses":
                     HashMap<String, String[]> caseClauses = new HashMap<String, String[]>() {{
-                        put("case", keywords.case_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("case", keywords.caseKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(caseClauses));
                     break;
@@ -259,8 +277,8 @@ public class CompletionListGenerator {
                     break;
                 case "defaultclause":
                     HashMap<String, String[]> defaultClause = new HashMap<String, String[]>() {{
-                        put("default", keywords.default_keyword);
-                        put("case", keywords.case_keyword);
+                        put("default", keywords.defaultKeyword);
+                        put("case", keywords.caseKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(defaultClause));
                     break;
@@ -272,31 +290,31 @@ public class CompletionListGenerator {
                     break;
                 case "throwstatement":
                     HashMap<String, String[]> throwStatement = new HashMap<String, String[]>() {{
-                        put("throw", keywords.throw_keyword);
+                        put("throw", keywords.throwKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(throwStatement));
                     break;
                 case "trystatement":
                     HashMap<String, String[]> tryStatement = new HashMap<String, String[]>() {{
-                        put("try", keywords.try_keyword);
+                        put("try", keywords.tryKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(tryStatement));
                     break;
                 case "catchproduction":
                     HashMap<String, String[]> catchProduction = new HashMap<String, String[]>() {{
-                        put("catch", keywords.catch_keyword);
+                        put("catch", keywords.catchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(catchProduction));
                     break;
                 case "finallyproduction":
                     HashMap<String, String[]> finallyProduction = new HashMap<String, String[]>() {{
-                        put("finally", keywords.finally_keyword);
+                        put("finally", keywords.finallyKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(finallyProduction));
                     break;
                 case "debuggerstatement":
                     HashMap<String, String[]> debuggerStatement = new HashMap<String, String[]>() {{
-                        put("debugger", keywords.debugger_keyword);
+                        put("debugger", keywords.debuggerKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(debuggerStatement));
                     break;
@@ -314,22 +332,22 @@ public class CompletionListGenerator {
                     break;
                 case "classtail":
                     HashMap<String, String[]> classTail = new HashMap<String, String[]>() {{
-                        put("extends", keywords.extends_keyword);
-                        put("implements", keywords.implements_keyword);
+                        put("extends", keywords.extendsKeyword);
+                        put("implements", keywords.implementsKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(classTail));
                     break;
                 case "classelement":
                     HashMap<String, String[]> classElement = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("constructor", keywords.constructor_keyword);
-                        put("class", keywords.class_keyword);
-                        put("static", keywords.static_keyword);
-                        put("private", keywords.private_keyword);
-                        put("public", keywords.public_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("constructor", keywords.constructorKeyword);
+                        put("class", keywords.classKeyword);
+                        put("static", keywords.staticKeyword);
+                        put("private", keywords.privateKeyword);
+                        put("public", keywords.publicKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
 
                     }};
                     keywordsMap.put(scope, generateArray(classElement));
@@ -366,16 +384,16 @@ public class CompletionListGenerator {
                     break;
                 case "functionbody":
                     HashMap<String, String[]> functionBody = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
 
                     }};
                     if (jsFunctionRegistry != null) {
@@ -442,17 +460,17 @@ public class CompletionListGenerator {
                     break;
                 case "expressionsequence":
                     HashMap<String, String[]> expressionSequence = new HashMap<String, String[]>() {{
-                        put("function", keywords.function_keyword);
-                        put("if", keywords.if_keyword);
-                        put("try", keywords.try_keyword);
-                        put("class", keywords.class_keyword);
-                        put("for", keywords.for_keyword);
-                        put("while", keywords.while_keyword);
-                        put("do", keywords.do_keyword);
-                        put("var", keywords.var_keyword);
-                        put("let", keywords.let_keyword);
-                        put("const", keywords.const_keyword);
-                        put("switch", keywords.switch_keyword);
+                        put("function", keywords.functionKeyword);
+                        put("if", keywords.ifKeyword);
+                        put("try", keywords.tryKeyword);
+                        put("class", keywords.classKeyword);
+                        put("for", keywords.forKeyword);
+                        put("while", keywords.whileKeyword);
+                        put("do", keywords.doKeyword);
+                        put("var", keywords.varKeyword);
+                        put("let", keywords.letKeyword);
+                        put("const", keywords.constKeyword);
+                        put("switch", keywords.switchKeyword);
                     }};
                     keywordsMap.put(scope, generateArray(expressionSequence));
                     break;
