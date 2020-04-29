@@ -33,9 +33,56 @@
         <artifactId>wso2</artifactId>
         <version>1.2</version>
     </parent>
+
+    <scm>
+        <url>https://github.com/wso2-extensions/identity-tools-debugger.git</url>
+        <developerConnection>scm:git:https://github.com/wso2-extensions/identity-tools-debugger.git</developerConnection>
+        <connection>scm:git:https://github.com/wso2-extensions/identity-tools-debugger.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <modules>
+        <module>modules/identity-java-agent/java-agent/</module>
+        <module>modules/server-endpoints/language-server</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.releases</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+  
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
@@ -126,7 +173,6 @@
                 <version>${org.powermock.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -152,7 +198,6 @@
                             <Premain-Class>org.wso2.carbon.identity.java.agent.DebugAgent</Premain-Class>
                         </manifestEntries>
                     </archive>
-
                 </configuration>
             </plugin>
             <plugin>
@@ -223,9 +268,4 @@
         <maven.surefire.plugin.version>2.22.0</maven.surefire.plugin.version>
         <org.powermock.version>1.7.4</org.powermock.version>
     </properties>
-
-    <modules>
-        <module>modules/identity-java-agent/java-agent/</module>
-        <module>modules/server-endpoints/language-server</module>
-    </modules>
 </project>
