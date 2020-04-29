@@ -19,21 +19,21 @@
 package org.wso2.carbon.identity.developer.lsp.debug.runtime;
 
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.OIDCAuthzRequestVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.OIDCAuthzResponseVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.OIDCTokenRequestVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.OIDCTokenResponseVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.SAMLEntryVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.SAMLExitVariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.VariableBuilder;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.HttpServletRequestTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.HttpServletResponseTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.OIDCAuthzRequestTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.OIDCAuthzResponseTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.OIDCTokenRequestTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.OIDCTokenResponseTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.SAMLRequestTranslator;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.translators.SAMLResponseTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders.OIDCAuthzRequestVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders.OIDCAuthzResponseVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders.OIDCTokenRequestVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders.OIDCTokenResponseVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.builders.SAMLEntryVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.builders.SAMLExitVariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.builders.VariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators.HttpServletRequestTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators.HttpServletResponseTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.translators.OIDCAuthzRequestTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.translators.OIDCAuthzResponseTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.translators.OIDCTokenRequestTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.translators.OIDCTokenResponseTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.translators.SAMLRequestTranslator;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.translators.SAMLResponseTranslator;
 import org.wso2.carbon.identity.java.agent.host.MethodContext;
 
 import java.util.HashMap;
@@ -56,7 +56,6 @@ public class VariableTranslateRegistry {
 
         addSAMLConfig();
         addOIDCConfig();
-
     }
 
     private void addSAMLConfig() {
@@ -126,7 +125,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateHttpRequest(Object argument, int variablesReference) {
 
-        return HttpServletRequestTranslator.getInstance().translate(argument, variablesReference);
+        return new HttpServletRequestTranslator().translate(argument, variablesReference);
     }
 
     /**
@@ -138,7 +137,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateSAMLRequest(Object argument, int variablesReference) {
 
-        return SAMLRequestTranslator.getInstance().translate(argument, variablesReference);
+        return new SAMLRequestTranslator().translate(argument, variablesReference);
     }
 
     /**
@@ -146,11 +145,11 @@ public class VariableTranslateRegistry {
      *
      * @param argument           Which holds all the arguments from the intercepted method.
      * @param variablesReference Variable Reference number send from the extension.
-     * @return The translated object from SAMLResponse.
+     * @return The translated object from OIDCAuthzRequest.
      */
     public Object translateOIDCAuthzRequest(Object argument, int variablesReference) {
 
-        return OIDCAuthzRequestTranslator.getInstance().translate(argument, variablesReference);
+        return new OIDCAuthzRequestTranslator().translate(argument, variablesReference);
     }
 
     /**
@@ -162,7 +161,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateOIDCAuthzResponse(Object argument, int variablesReference) {
 
-        return OIDCAuthzResponseTranslator.getInstance().translate(argument, variablesReference);
+        return new OIDCAuthzResponseTranslator().translate(argument, variablesReference);
     }
 
     /**
@@ -174,7 +173,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateOIDCTokenRequest(Object argument, int variablesReference) {
 
-        return OIDCTokenRequestTranslator.getInstance().translate(argument, variablesReference);
+        return new OIDCTokenRequestTranslator().translate(argument, variablesReference);
     }
     /**
      * This method is to translate the argument through reusable OIDCTokenResponseTranslator.
@@ -185,7 +184,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateOIDCTokenResponse(Object argument, int variablesReference) {
 
-        return OIDCTokenResponseTranslator.getInstance().translate(argument, variablesReference);
+        return new OIDCTokenResponseTranslator ().translate(argument, variablesReference);
     }
 
     /**
@@ -197,7 +196,7 @@ public class VariableTranslateRegistry {
      */
     public Object translateHttpResponse(Object argument, int variablesReference) {
 
-        return HttpServletResponseTranslator.getInstance().translate(argument, variablesReference);
+        return new HttpServletResponseTranslator().translate(argument, variablesReference);
     }
 
     /**
@@ -209,6 +208,6 @@ public class VariableTranslateRegistry {
      */
     public Object translateSAMLResponse(Object argument, int variablesReference) {
 
-        return SAMLResponseTranslator.getInstance().translate(argument, variablesReference);
+        return new SAMLResponseTranslator().translate(argument, variablesReference);
     }
 }

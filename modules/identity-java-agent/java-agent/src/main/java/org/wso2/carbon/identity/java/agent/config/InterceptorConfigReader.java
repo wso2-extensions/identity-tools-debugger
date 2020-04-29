@@ -36,7 +36,7 @@ public class InterceptorConfigReader {
     public List<InterceptorConfig> readConfig() {
 
         ArrayList<InterceptorConfig> result = new ArrayList<>();
-
+        // TODO Add 2 private methods
         InterceptorConfig samlFilterConfig = new InterceptorConfig();
         samlFilterConfig.setClassName(
                 "org/wso2/carbon/identity/sso/saml/servlet/SAMLSSOProviderServlet");

@@ -71,14 +71,14 @@ public class InterceptingClassTransformer implements ClassFileTransformer {
      * We check our config with classes and intercept only when the Corresponding Class Name, Method Name, Method
      * Signature matches.
      *
-     * @param loader              The defining loader of the class to be transformed, may be {@code null} if the bootstrap loader.
+     * @param loader              The defining loader of the class to be transformed, may be {@code null}
+     *                            if the bootstrap loader.
      * @param className           The name of the class in the internal form of fully qualified class.
      * @param classBeingRedefined If this is triggered by a redefine or re transform, the class being redefined.
      * @param protectionDomain    The protection domain of the class being defined or redefined.
      * @param classfileBuffer     The input byte buffer in class file format - Have to be instrumented.
-     * @return
-     * @throws IllegalClassFormatException
-     * @implSpec The default implementation returns null.
+     * @return The transformed byte code.
+     * @throws IllegalClassFormatException The IllegalClassFormat Exception.
      */
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
@@ -139,7 +139,7 @@ public class InterceptingClassTransformer implements ClassFileTransformer {
     }
 
     /**
-     * This method is to get the InterceptorConfig using Class name.
+     * This method is to get the InterceptorConfig using class name.
      *
      * @param className The name of the class in the internal form of fully qualified class.
      * @return The Interceptor config corresponding to the class name.
