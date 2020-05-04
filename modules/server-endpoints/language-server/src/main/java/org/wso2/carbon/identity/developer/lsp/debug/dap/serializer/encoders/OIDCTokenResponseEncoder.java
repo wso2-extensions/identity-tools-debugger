@@ -18,9 +18,6 @@
 
 package org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.JsonObject;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +35,9 @@ import java.util.Map;
 public class OIDCTokenResponseEncoder implements VariableEncoder {
 
     private static final Log log = LogFactory.getLog(OIDCTokenResponseEncoder.class);
+    private static final int JWT_HEADER_INDEX = 0;
+    private static final int JWT_PAYLOAD_INDEX = 1;
+    private static final int JWT_PARTS = 3;
 
     @Override
     public JsonObject translate(Object oidcTokenResponseTranslated) {
@@ -57,16 +58,18 @@ public class OIDCTokenResponseEncoder implements VariableEncoder {
                 valueObject.addProperty(tokenResponseDetail.getKey(),
                         (String) tokenResponseDetail.getValue());
                 if (StringUtils.equals(tokenResponseDetail.getKey(), DAPConstants.ID_TOKEN)) {
+                    final String[] jwtParts = ((String) tokenResponseDetail.getValue()).split("\\.");
+                    JsonObject jwtObject = new JsonObject();
                     try {
-                        DecodedJWT jwt = JWT.decode((String) tokenResponseDetail.getValue());
-
-                        JsonObject jwtObject = new JsonObject();
-                        jwtObject.addProperty(DAPConstants.JWT_HEADER, org.apache.commons.codec.binary.
-                                StringUtils.newStringUtf8(Base64.decodeBase64(jwt.getHeader())));
-                        jwtObject.addProperty(DAPConstants.JWT_PAYLOAD, org.apache.commons.codec.binary.
-                                StringUtils.newStringUtf8(Base64.decodeBase64(jwt.getPayload())));
-                        valueObject.add(DAPConstants.ID_TOKEN_DECODED, jwtObject);
-                    } catch (JWTDecodeException ex) {
+                        if (jwtParts.length == JWT_PARTS) {
+                            jwtObject.addProperty(DAPConstants.JWT_HEADER, org.apache.commons.codec.binary.
+                                    StringUtils.newStringUtf8(Base64.decodeBase64(jwtParts[JWT_HEADER_INDEX])));
+                            jwtObject.addProperty(DAPConstants.JWT_PAYLOAD, org.apache.commons.codec.binary.
+                                    StringUtils.newStringUtf8(Base64.decodeBase64(jwtParts[JWT_PAYLOAD_INDEX])));
+                        } else {
+                            throw new ParseException("Error Decoding the Jwt: InvalidJWT token", 0);
+                        }
+                    } catch (ParseException ex) {
                         log.error("Error Decoding the Jwt: InvalidJWT token", ex);
                     }
                 }

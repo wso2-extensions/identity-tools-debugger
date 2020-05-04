@@ -30,6 +30,9 @@ import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.Vari
 
 import java.util.HashMap;
 
+/**
+ * Registry to get the relevant Encoders for Translated Variables.
+ */
 public class VariableEncoderRegistry {
 
     private HashMap<String, VariableEncoder> registry;
