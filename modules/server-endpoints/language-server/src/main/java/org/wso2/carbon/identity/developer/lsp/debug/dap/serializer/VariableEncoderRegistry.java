@@ -22,6 +22,7 @@ import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.HttpServletRequestEncoder;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.HttpServletResponseEncoder;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.OIDCAuthzRequestEncoder;
+import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.OIDCAuthzResponseEncoder;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.OIDCTokenRequestEncoder;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.OIDCTokenResponseEncoder;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.encoders.SAMLRequestEncoder;
@@ -50,7 +51,7 @@ public class VariableEncoderRegistry {
         registry.put(DAPConstants.SAML_REQUEST, new SAMLRequestEncoder());
         registry.put(DAPConstants.SAML_RESPONSE, new SAMLResponseEncoder());
         registry.put(DAPConstants.OIDC_AUTHZ_REQUEST, new OIDCAuthzRequestEncoder());
-        registry.put(DAPConstants.OIDC_AUTHZ_RESPONSE, new HttpServletRequestEncoder());
+        registry.put(DAPConstants.OIDC_AUTHZ_RESPONSE, new OIDCAuthzResponseEncoder());
         registry.put(DAPConstants.OIDC_TOKEN_REQUEST, new OIDCTokenRequestEncoder());
         registry.put(DAPConstants.OIDC_TOKEN_RESPONSE, new OIDCTokenResponseEncoder());
     }
