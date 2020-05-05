@@ -50,7 +50,7 @@ public class OIDCTokenRequestEncoder implements VariableEncoder {
                 getOAuthClientAuthnContext(tokenRequestDetails));
         arrayElement.add(DAPConstants.JSON_KEY_FOR_VALUE, values);
         arrayElement.addProperty(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, 0);
-        return null;
+        return arrayElement;
     }
 
     private JsonObject getOIDCTokenRequestParameters(HashMap<String, Object> tokenRequestDetails) {

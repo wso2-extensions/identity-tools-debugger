@@ -41,7 +41,7 @@ public class HttpServletResponseEncoder implements VariableEncoder {
                 this.getResponseStatus(responseDetails));
         arrayElement.add(DAPConstants.JSON_KEY_FOR_VALUE, valueObject);
         arrayElement.addProperty(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, 0);
-        return null;
+        return arrayElement;
     }
 
     private JsonObject getHeaders(HashMap<String, Object> requestdetails) {
