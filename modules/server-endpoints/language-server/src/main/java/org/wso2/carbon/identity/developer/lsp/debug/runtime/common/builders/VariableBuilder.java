@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.builders;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.builders;
 
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.Argument;
 

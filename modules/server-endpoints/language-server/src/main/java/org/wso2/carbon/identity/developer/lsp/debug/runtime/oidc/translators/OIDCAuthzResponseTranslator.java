@@ -16,35 +16,25 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.translators;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators.VariableTranslator;
 
 /**
- * Translator just pass the String arguments as it is.
+ * Translator to translate the  OIDC Response arguments.
  */
-public class StringPassTranslator implements VariableTranslator {
+public class OIDCAuthzResponseTranslator implements VariableTranslator {
 
-    private StringPassTranslator() {
-
-    }
-
-    private static class StringPassTranslatorHolder {
-
-        private static final StringPassTranslator INSTANCE = new StringPassTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the StringPassTranslator.
-     *
-     * @return Pass the same string.
-     */
-    public static StringPassTranslator getInstance() {
-
-        return StringPassTranslatorHolder.INSTANCE;
-    }
+    private static final Log log = LogFactory.getLog(OIDCAuthzResponseTranslator.class);
 
     @Override
     public Object translate(Object object, int variablesReference) {
 
-        return object;
+        if (object instanceof String) {
+            return (String) object;
+        }
+        return "No OIDC Response Redirect URL Added";
     }
 }

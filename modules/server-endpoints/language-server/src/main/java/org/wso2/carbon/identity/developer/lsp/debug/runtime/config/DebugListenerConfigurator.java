@@ -53,7 +53,32 @@ public class DebugListenerConfigurator {
                 DAPConstants.SAML_EXIT_METHOD,
                 DAPConstants.SAML_EXIT_SIGNATURE);
 
+        MethodEntryInterceptionFilter oidcAuthzRequestFilter = new MethodEntryInterceptionFilter(
+                DAPConstants.OIDC_AUTHZ_CLASS,
+                DAPConstants.OIDC_AUTHZ_REQUEST_METHOD,
+                DAPConstants.OIDC_AUTHZ_REQUEST_SIGNATURE);
+
+        MethodEntryInterceptionFilter oidcAuthzResponseFilter = new MethodEntryInterceptionFilter(
+                DAPConstants.OIDC_AUTHZ_CLASS,
+                DAPConstants.OIDC_AUTHZ_RESPONSE_METHOD,
+                DAPConstants.OIDC_AUTHZ_RESPONSE_SIGNATURE);
+
+        MethodEntryInterceptionFilter oidcTokenRequestFilter = new MethodEntryInterceptionFilter(
+                DAPConstants.OIDC_TOKEN_CLASS,
+                DAPConstants.OIDC_TOKEN_REQUEST_METHOD,
+                DAPConstants.OIDC_TOKEN_REQUEST_SIGNATURE);
+
+        MethodEntryInterceptionFilter oidcTokenResponseFilter = new MethodEntryInterceptionFilter(
+                DAPConstants.OIDC_TOKEN_CLASS,
+                DAPConstants.OIDC_TOKEN_RESPONSE_METHOD,
+                DAPConstants.OIDC_TOKEN_RESPONSE_SIGNATURE);
+
         interceptionEngine.addListener(samlExitFilter, this.sessionManager);
         interceptionEngine.addListener(samlEntryFilter, this.sessionManager);
+
+        interceptionEngine.addListener(oidcAuthzRequestFilter, this.sessionManager);
+        interceptionEngine.addListener(oidcAuthzResponseFilter, this.sessionManager);
+        interceptionEngine.addListener(oidcTokenRequestFilter, this.sessionManager);
+        interceptionEngine.addListener(oidcTokenResponseFilter, this.sessionManager);
     }
 }

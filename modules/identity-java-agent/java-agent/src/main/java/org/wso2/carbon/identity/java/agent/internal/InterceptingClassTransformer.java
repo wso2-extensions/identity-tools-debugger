@@ -139,7 +139,7 @@ public class InterceptingClassTransformer implements ClassFileTransformer {
     }
 
     /**
-     * This method is to get the InterceptorConfig using Class name.
+     * This method is to get the InterceptorConfig using class name.
      *
      * @param className The name of the class in the internal form of fully qualified class.
      * @return The Interceptor config corresponding to the class name.

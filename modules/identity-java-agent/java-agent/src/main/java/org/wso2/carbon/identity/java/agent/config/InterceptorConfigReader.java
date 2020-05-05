@@ -35,7 +35,45 @@ public class InterceptorConfigReader {
      */
     public List<InterceptorConfig> readConfig() {
 
-        ArrayList<InterceptorConfig> result = new ArrayList<>();
+        ArrayList<InterceptorConfig> interceptorConfigs = new ArrayList<>();
+        addSAMLConfig(interceptorConfigs);
+        addOIDCConfig(interceptorConfigs);
+        return interceptorConfigs;
+    }
+
+    private void addOIDCConfig(ArrayList<InterceptorConfig> interceptorConfigs) {
+
+        // OIDC Authorization Endpoint Configs.
+        InterceptorConfig oidcAuthzFilterConfig = new InterceptorConfig();
+        oidcAuthzFilterConfig.setClassName(
+                "org/wso2/carbon/identity/oauth/endpoint/authz/OAuth2AuthzEndpoint");
+        oidcAuthzFilterConfig.addMethodConfigs("handleInitialAuthorizationRequest",
+                "(Lorg/wso2/carbon/identity/oauth/endpoint/message/OAuthMessage;)Ljavax/ws/rs/core/Response;",
+                true, false);
+        oidcAuthzFilterConfig.addMethodConfigs("manageOIDCSessionState",
+                "(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;" +
+                        "Lorg/wso2/carbon/identity/oidc/session/OIDCSessionState;" +
+                        "Lorg/wso2/carbon/identity/oauth2/model/OAuth2Parameters;Ljava/lang/String;Ljava/lang/String;" +
+                        ")Ljava/lang/String;",
+                false, true);
+        interceptorConfigs.add(oidcAuthzFilterConfig);
+
+        // OIDC Token Endpoint Configs.
+        InterceptorConfig oidcTokenFilterConfig = new InterceptorConfig();
+        oidcTokenFilterConfig.setClassName(
+                "org/wso2/carbon/identity/oauth/endpoint/token/OAuth2TokenEndpoint");
+        oidcTokenFilterConfig.addMethodConfigs("buildTokenResponse",
+                "(Lorg/wso2/carbon/identity/oauth2/dto/OAuth2AccessTokenRespDTO;)Ljavax/ws/rs/core/Response;",
+                true, false);
+        oidcTokenFilterConfig.addMethodConfigs("buildCarbonOAuthTokenRequest",
+                "(Ljavax/servlet/http/HttpServletRequestWrapper;)" +
+                        "Lorg/wso2/carbon/identity/oauth2/model/CarbonOAuthTokenRequest;",
+                false, true);
+
+        interceptorConfigs.add(oidcTokenFilterConfig);
+    }
+
+    private void addSAMLConfig(ArrayList<InterceptorConfig> interceptorConfigs) {
 
         InterceptorConfig samlFilterConfig = new InterceptorConfig();
         samlFilterConfig.setClassName(
@@ -50,7 +88,6 @@ public class InterceptorConfigReader {
                         "Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/" +
                         "String;Ljava/lang/String;)V", false, true);
 
-        result.add(samlFilterConfig);
-        return result;
+        interceptorConfigs.add(samlFilterConfig);
     }
 }

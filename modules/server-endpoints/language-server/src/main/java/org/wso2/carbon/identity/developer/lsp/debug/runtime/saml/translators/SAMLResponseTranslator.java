@@ -16,10 +16,11 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.translators;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators.VariableTranslator;
 
 import java.util.Base64;
 
@@ -28,26 +29,7 @@ import java.util.Base64;
  */
 public class SAMLResponseTranslator implements VariableTranslator {
 
-    private static Log log = LogFactory.getLog(SAMLResponseTranslator.class);
-
-    private SAMLResponseTranslator() {
-
-    }
-
-    private static class SAMLResponseTranslatorHolder {
-
-        private static final SAMLResponseTranslator INSTANCE = new SAMLResponseTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the SAMLResponseTranslator.
-     *
-     * @return The SAMLResponseTranslatorHolder instance.
-     */
-    public static SAMLResponseTranslator getInstance() {
-
-        return SAMLResponseTranslatorHolder.INSTANCE;
-    }
+    private static final Log log = LogFactory.getLog(SAMLResponseTranslator.class);
 
     @Override
     public Object translate(Object object, int variablesReference) {

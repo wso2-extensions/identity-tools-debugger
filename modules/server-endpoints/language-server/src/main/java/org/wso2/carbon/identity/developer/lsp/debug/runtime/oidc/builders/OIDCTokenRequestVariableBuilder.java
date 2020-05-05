@@ -16,36 +16,35 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.builders;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders;
 
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.Argument;
 import org.wso2.carbon.identity.developer.lsp.debug.runtime.VariableTranslateRegistry;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.builders.VariableBuilder;
 
 import java.util.Map;
 
 /**
- * Builder to build the Variable Response for the variable Response.
+ * Builder for Variable Response of the OIDC Token Request Variable.
  */
-public class SAMLExitVariableBuilder implements VariableBuilder {
+public class OIDCTokenRequestVariableBuilder implements VariableBuilder {
 
-    private SAMLExitResponseVariable samlExitResponseVariable;
+    private OIDCTokenRequestVariable oidcTokenRequestVariable;
     private VariableTranslateRegistry variableTranslateRegistry;
 
-    public SAMLExitVariableBuilder(VariableTranslateRegistry variableTranslateRegistry) {
+    public OIDCTokenRequestVariableBuilder(VariableTranslateRegistry variableTranslateRegistry) {
 
-        this.samlExitResponseVariable = new SAMLExitResponseVariable();
+        this.oidcTokenRequestVariable = new OIDCTokenRequestVariable();
         this.variableTranslateRegistry = variableTranslateRegistry;
     }
 
     @Override
     public Argument<Map<String, Object>> build(Object[] arguments, int variablesReference) {
 
-        this.samlExitResponseVariable.setHttpServletResponse(
-                variableTranslateRegistry.translateHttpResponse(arguments[1],
+        this.oidcTokenRequestVariable.setTokenRequest(
+                variableTranslateRegistry.translateOIDCTokenRequest(arguments[0],
                         variablesReference));
-        this.samlExitResponseVariable.setSAMLResponse(variableTranslateRegistry.translateSAMLResponse(arguments[3],
-                variablesReference));
-        return new Argument<>(samlExitResponseVariable.getVariables());
+        return new Argument<>(oidcTokenRequestVariable.getOidcTokenRequestVariableHolder());
     }
 
 }

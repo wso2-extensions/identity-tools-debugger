@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators;
 
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 
@@ -30,46 +30,27 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class HttpServletResponseTranslator implements VariableTranslator {
 
-    private HttpServletResponseTranslator() {
-
-    }
-
-    private static class HttpServletResponseTranslatorHolder {
-
-        private static final HttpServletResponseTranslator INSTANCE = new HttpServletResponseTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the HttpServletResponseTranslator.
-     *
-     * @return The HttpServletResponseTranslatorHolder instance.
-     */
-    public static HttpServletResponseTranslator getInstance() {
-
-        return HttpServletResponseTranslatorHolder.INSTANCE;
-    }
-
     @Override
     public Object translate(Object object, int variablesReference) {
 
-        HashMap<String, Object> responsedetails = new HashMap<>();
+        HashMap<String, Object> responseDetails = new HashMap<>();
         if (object != null && object instanceof HttpServletRequest) {
             HttpServletResponse httpServletResponse = (HttpServletResponse) object;
-            responsedetails.put(DAPConstants.JSON_KEY_FOR_STATUS, httpServletResponse.getStatus());
-            responsedetails.put(DAPConstants.JSON_KEY_FOR_HEADERS, this.getResponseHeaders(httpServletResponse));
-            responsedetails.put(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, variablesReference);
+            responseDetails.put(DAPConstants.JSON_KEY_FOR_STATUS, httpServletResponse.getStatus());
+            responseDetails.put(DAPConstants.JSON_KEY_FOR_HEADERS, this.getResponseHeaders(httpServletResponse));
+            responseDetails.put(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, variablesReference);
         }
-        return responsedetails;
+        return responseDetails;
 
     }
 
     private HashMap<String, String> getResponseHeaders(HttpServletResponse response) {
 
-        HashMap<String, String> headerdetails = new HashMap<>();
+        HashMap<String, String> headerDetails = new HashMap<>();
         for (String nextHeaderName : response.getHeaderNames()) {
             String headerValue = response.getHeader(nextHeaderName);
-            headerdetails.put(nextHeaderName, headerValue);
+            headerDetails.put(nextHeaderName, headerValue);
         }
-        return headerdetails;
+        return headerDetails;
     }
 }

@@ -16,34 +16,37 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.builders;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.builders;
 
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.Argument;
 import org.wso2.carbon.identity.developer.lsp.debug.runtime.VariableTranslateRegistry;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.builders.VariableBuilder;
 
 import java.util.Map;
 
 /**
  * Builder to build the Variable Response for the variable Response.
  */
-public class SAMLEntryVariableBuilder implements VariableBuilder {
+public class SAMLExitVariableBuilder implements VariableBuilder {
 
-    private SAMLEntryRequestVariable samlEntryRequestVariable;
+    private SAMLExitResponseVariable samlExitResponseVariable;
     private VariableTranslateRegistry variableTranslateRegistry;
 
-    public SAMLEntryVariableBuilder(VariableTranslateRegistry variableTranslateRegistry) {
+    public SAMLExitVariableBuilder(VariableTranslateRegistry variableTranslateRegistry) {
 
+        this.samlExitResponseVariable = new SAMLExitResponseVariable();
         this.variableTranslateRegistry = variableTranslateRegistry;
-        this.samlEntryRequestVariable = new SAMLEntryRequestVariable();
     }
 
     @Override
     public Argument<Map<String, Object>> build(Object[] arguments, int variablesReference) {
 
-        this.samlEntryRequestVariable.setHttpServletRequest(variableTranslateRegistry.translateHttpRequest(arguments[0],
+        this.samlExitResponseVariable.setHttpServletResponse(
+                variableTranslateRegistry.translateHttpResponse(arguments[1],
+                        variablesReference));
+        this.samlExitResponseVariable.setSAMLResponse(variableTranslateRegistry.translateSAMLResponse(arguments[3],
                 variablesReference));
-        this.samlEntryRequestVariable.setSAMLRequest(variableTranslateRegistry.translateSAMLRequest(arguments[0],
-                variablesReference));
-        return new Argument<>(samlEntryRequestVariable.getVariables());
+        return new Argument<>(samlExitResponseVariable.getSamlExitResponseVariableHolder());
     }
+
 }

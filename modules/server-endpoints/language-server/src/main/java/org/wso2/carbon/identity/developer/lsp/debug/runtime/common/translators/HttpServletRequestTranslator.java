@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators;
 
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 
@@ -30,48 +30,29 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class HttpServletRequestTranslator implements VariableTranslator {
 
-    private HttpServletRequestTranslator() {
-
-    }
-
-    private static class HttpServletRequestTranslatorHolder {
-
-        private static final HttpServletRequestTranslator INSTANCE = new HttpServletRequestTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the HttpServletRequestTranslator.
-     *
-     * @return The HttpServletRequestTranslatorHolder instance.
-     */
-    public static HttpServletRequestTranslator getInstance() {
-
-        return HttpServletRequestTranslatorHolder.INSTANCE;
-    }
-
     @Override
     public Object translate(Object object, int variablesReference) {
 
-        HashMap<String, Object> requestdetails = new HashMap<>();
+        HashMap<String, Object> requestDetails = new HashMap<>();
         if (object != null && object instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) object;
-            requestdetails.put(DAPConstants.JSON_KEY_FOR_COOKIES, httpServletRequest.getCookies());
-            requestdetails.put(DAPConstants.JSON_KEY_FOR_HEADERS, this.getRequestHeaders(httpServletRequest));
-            requestdetails.put(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, variablesReference);
+            requestDetails.put(DAPConstants.JSON_KEY_FOR_COOKIES, httpServletRequest.getCookies());
+            requestDetails.put(DAPConstants.JSON_KEY_FOR_HEADERS, this.getRequestHeaders(httpServletRequest));
+            requestDetails.put(DAPConstants.JSON_KEY_FOR_VARIABLE_REFERENCE, variablesReference);
 
         }
-        return requestdetails;
+        return requestDetails;
 
     }
 
     private HashMap<String, String> getRequestHeaders(HttpServletRequest request) {
 
-        HashMap<String, String> headerdetails = new HashMap<>();
+        HashMap<String, String> headerDetails = new HashMap<>();
         for (Enumeration<?> e = request.getHeaderNames(); e.hasMoreElements(); ) {
             String nextHeaderName = (String) e.nextElement();
             String headerValue = request.getHeader(nextHeaderName);
-            headerdetails.put(nextHeaderName, headerValue);
+            headerDetails.put(nextHeaderName, headerValue);
         }
-        return headerdetails;
+        return headerDetails;
     }
 }

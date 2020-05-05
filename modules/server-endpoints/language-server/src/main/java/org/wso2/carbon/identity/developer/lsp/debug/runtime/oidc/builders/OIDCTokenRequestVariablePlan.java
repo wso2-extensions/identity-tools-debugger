@@ -16,24 +16,17 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.builders;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.oidc.builders;
 
 /**
- * Interface to help build the SAMLEntryVariable.
+ * Interface to help build the Token Request Variable.
  */
-public interface SAMLEntryVariablePlan {
+public interface OIDCTokenRequestVariablePlan {
 
     /**
-     * This method is add httpServletRequest to variables list  After the argument is proceeded.
+     * This method is to add Token Request to variables list after the argument is proceeded.
      *
-     * @param httpServletRequest The HttpServletRequest object, known as "request" in a JSP page.
+     * @param tokenRequest The Token Request for OIDC.
      */
-    void setHttpServletRequest(Object httpServletRequest);
-
-    /**
-     * This method is add SAML Request to variables list  After the argument is proceeded.
-     *
-     * @param samlRequest The SAML Request string.
-     */
-    void setSAMLRequest(Object samlRequest);
+    void setTokenRequest(Object tokenRequest);
 }

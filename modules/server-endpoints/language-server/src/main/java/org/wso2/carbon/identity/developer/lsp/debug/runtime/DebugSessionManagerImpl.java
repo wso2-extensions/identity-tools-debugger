@@ -33,7 +33,7 @@ import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.StoppedEvent;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.VariablesRequest;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.VariablesResponse;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.JsonDap;
-import org.wso2.carbon.identity.developer.lsp.debug.runtime.builders.VariableBuilder;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.builders.VariableBuilder;
 import org.wso2.carbon.identity.developer.lsp.debug.runtime.config.DebugListenerConfigurator;
 import org.wso2.carbon.identity.java.agent.AgentHelper;
 import org.wso2.carbon.identity.java.agent.connect.InterceptionEngine;
@@ -52,7 +52,7 @@ import javax.websocket.Session;
  */
 public class DebugSessionManagerImpl implements DebugSessionManager, InterceptionListener {
 
-    private static Log log = LogFactory.getLog(DebugSessionManagerImpl.class);
+    private static final Log log = LogFactory.getLog(DebugSessionManagerImpl.class);
     private Map<Session, DebugSession> activeDebugSessions = new HashMap<>();
     private InterceptionEngine interceptionEngine;
     private VariableTranslateRegistry variableTranslateRegistry = new VariableTranslateRegistry();
@@ -205,10 +205,7 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
 
     private Map.Entry<Session, DebugSession> findInterestedDebugSession(MethodContext methodContext) {
 
-        //For not, just return the first entry. We need to have a better filter later.
-        if (!methodContext.getClassName().equals("org/wso2/carbon/identity/sso/saml/servlet/SAMLSSOProviderServlet")) {
-            return null;
-        }
+        // Have to add mechanism to corresponding the relevant tenant
         if (!activeDebugSessions.isEmpty()) {
             for (Map.Entry<Session, DebugSession> entry : activeDebugSessions.entrySet()) {
                 return entry;

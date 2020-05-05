@@ -16,12 +16,13 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.saml.translators;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.base.IdentityException;
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
+import org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators.VariableTranslator;
 import org.wso2.carbon.identity.sso.saml.util.SAMLSSOUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,26 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SAMLRequestTranslator implements VariableTranslator {
 
-    private static Log log = LogFactory.getLog(SAMLRequestTranslator.class);
-
-    private SAMLRequestTranslator() {
-
-    }
-
-    private static class SAMLRequestTranslatorHolder {
-
-        private static final SAMLRequestTranslator INSTANCE = new SAMLRequestTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the SAMLRequestTranslator.
-     *
-     * @return The SAMLRequestTranslatorHolder instance.
-     */
-    public static SAMLRequestTranslator getInstance() {
-
-        return SAMLRequestTranslatorHolder.INSTANCE;
-    }
+    private static final Log log = LogFactory.getLog(SAMLRequestTranslator.class);
 
     @Override
     public Object translate(Object object, int variablesReference) {

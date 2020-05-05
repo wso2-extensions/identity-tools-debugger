@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators;
 
 /**
  * Variables translator for an internal object to external form.
@@ -26,8 +26,8 @@ public interface VariableTranslator {
     /**
      * This method allow to translate the variable from the argument.
      *
-     * @param object The Request or Response Variables to be translated.
-     * @param variablesReference  Reference to the Variable container.
+     * @param object             The Request or Response Variables to be translated.
+     * @param variablesReference Reference to the Variable container.
      * @return The translated object.
      */
     Object translate(Object object, int variablesReference);

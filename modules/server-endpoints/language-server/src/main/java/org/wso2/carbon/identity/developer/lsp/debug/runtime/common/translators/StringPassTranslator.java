@@ -16,24 +16,16 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.builders;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators;
 
 /**
- * Interface to help build the SAMLEntryVariable.
+ * Translator just pass the String arguments as it is.
  */
-public interface SAMLExitVariablePlan {
+public class StringPassTranslator implements VariableTranslator {
 
-    /**
-     * This method is to add httpServletResponse to variables list  After the argument is proceeded.
-     *
-     * @param httpServletResponse The HttpServletResponse object, known as "response" in a JSP page.
-     */
-    void setHttpServletResponse(Object httpServletResponse);
+    @Override
+    public Object translate(Object object, int variablesReference) {
 
-    /**
-     * This method is to add SAML Response to variables list  After the argument is proceeded.
-     *
-     * @param samlResponse The SAML Response string.
-     */
-    void setSAMLResponse(Object samlResponse);
+        return object;
+    }
 }

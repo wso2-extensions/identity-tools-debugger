@@ -16,31 +16,12 @@
  * under the License.
  */
 
-package org.wso2.carbon.identity.developer.lsp.debug.runtime.translators;
+package org.wso2.carbon.identity.developer.lsp.debug.runtime.common.translators;
 
 /**
  * Default variable translator, uses reflection to get the variables and values.
  */
 public class DefaultVariableTranslator implements VariableTranslator {
-
-    private DefaultVariableTranslator() {
-
-    }
-
-    private static class DefaultVariableTranslatorHolder {
-
-        private static final DefaultVariableTranslator INSTANCE = new DefaultVariableTranslator();
-    }
-
-    /**
-     * This static method allow to get the instance of the DefaultVariableTranslator.
-     *
-     * @return The DefaultVariableTranslatorHolder instance.
-     */
-    public static DefaultVariableTranslator getInstance() {
-
-        return DefaultVariableTranslatorHolder.INSTANCE;
-    }
 
     @Override
     public Object translate(Object object, int variablesReference) {
