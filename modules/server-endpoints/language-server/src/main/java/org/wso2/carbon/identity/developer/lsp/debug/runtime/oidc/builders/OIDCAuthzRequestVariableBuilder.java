@@ -43,6 +43,6 @@ public class OIDCAuthzRequestVariableBuilder implements VariableBuilder {
         // argument[0] is OAuthMessage here.
         this.oidcAuthzRequestVariable.setOAuthMessage(variableTranslateRegistry.translateOIDCAuthzRequest(arguments[0],
                 variablesReference));
-        return new Argument<>(oidcAuthzRequestVariable.getVariables());
+        return new Argument<>(oidcAuthzRequestVariable.getOidcAuthzRequestVariableHolder());
     }
 }

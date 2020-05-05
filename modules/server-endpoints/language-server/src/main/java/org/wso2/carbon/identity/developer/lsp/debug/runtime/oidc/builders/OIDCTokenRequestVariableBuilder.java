@@ -44,7 +44,7 @@ public class OIDCTokenRequestVariableBuilder implements VariableBuilder {
         this.oidcTokenRequestVariable.setTokenRequest(
                 variableTranslateRegistry.translateOIDCTokenRequest(arguments[0],
                         variablesReference));
-        return new Argument<>(oidcTokenRequestVariable.getVariables());
+        return new Argument<>(oidcTokenRequestVariable.getOidcTokenRequestVariableHolder());
     }
 
 }

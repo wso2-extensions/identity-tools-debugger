@@ -45,6 +45,6 @@ public class SAMLEntryVariableBuilder implements VariableBuilder {
                 variablesReference));
         this.samlEntryRequestVariable.setSAMLRequest(variableTranslateRegistry.translateSAMLRequest(arguments[0],
                 variablesReference));
-        return new Argument<>(samlEntryRequestVariable.getVariables());
+        return new Argument<>(samlEntryRequestVariable.getSamlEntryRequestVariableHolder());
     }
 }

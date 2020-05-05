@@ -46,7 +46,7 @@ public class SAMLExitVariableBuilder implements VariableBuilder {
                         variablesReference));
         this.samlExitResponseVariable.setSAMLResponse(variableTranslateRegistry.translateSAMLResponse(arguments[3],
                 variablesReference));
-        return new Argument<>(samlExitResponseVariable.getVariables());
+        return new Argument<>(samlExitResponseVariable.getSamlExitResponseVariableHolder());
     }
 
 }

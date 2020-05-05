@@ -26,19 +26,19 @@ import java.util.HashMap;
  * Variables Holds the necessary Variables for SAML Entry Request.
  */
 public class SAMLEntryRequestVariable implements SAMLEntryVariablePlan {
-
-    private HashMap<String, Object> variables = new HashMap<>();
+     
+    private HashMap<String, Object> samlEntryRequestVariableHolder = new HashMap<>();
 
     @Override
     public void setHttpServletRequest(Object httpServletRequest) {
 
-        this.variables.put(DAPConstants.HTTP_SERVLET_REQUEST, httpServletRequest);
+        this.samlEntryRequestVariableHolder.put(DAPConstants.HTTP_SERVLET_REQUEST, httpServletRequest);
     }
 
     @Override
     public void setSAMLRequest(Object samlRequest) {
 
-        this.variables.put(DAPConstants.SAML_REQUEST, samlRequest);
+        this.samlEntryRequestVariableHolder.put(DAPConstants.SAML_REQUEST, samlRequest);
     }
 
     /**
@@ -46,8 +46,8 @@ public class SAMLEntryRequestVariable implements SAMLEntryVariablePlan {
      *
      * @return The list of variables corresponding to SAML Entry Request.
      */
-    public HashMap<String, Object> getVariables() {
+    public HashMap<String, Object> getSamlEntryRequestVariableHolder() {
 
-        return variables;
+        return samlEntryRequestVariableHolder;
     }
 }

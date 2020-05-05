@@ -27,27 +27,27 @@ import java.util.HashMap;
  */
 public class SAMLExitResponseVariable implements SAMLExitVariablePlan {
 
-    private HashMap<String, Object> variables = new HashMap<>();
+    private HashMap<String, Object> samlExitResponseVariableHolder = new HashMap<>();
 
     /**
      * This method is to get the variables after adding the objects.
      *
      * @return The list of variables corresponding to SAML Exit Request.
      */
-    public HashMap<String, Object> getVariables() {
+    public HashMap<String, Object> getSamlExitResponseVariableHolder() {
 
-        return variables;
+        return samlExitResponseVariableHolder;
     }
 
     @Override
     public void setHttpServletResponse(Object httpServletResponse) {
 
-        variables.put(DAPConstants.HTTP_SERVLET_RESPONSE, httpServletResponse);
+        samlExitResponseVariableHolder.put(DAPConstants.HTTP_SERVLET_RESPONSE, httpServletResponse);
     }
 
     @Override
     public void setSAMLResponse(Object samlResponse) {
 
-        variables.put(DAPConstants.SAML_RESPONSE, samlResponse);
+        samlExitResponseVariableHolder.put(DAPConstants.SAML_RESPONSE, samlResponse);
     }
 }

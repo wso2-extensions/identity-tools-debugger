@@ -27,20 +27,20 @@ import java.util.HashMap;
  */
 public class OIDCAuthzResponseVariable implements OIDCAuthzResponseVariablePlan {
 
-    HashMap<String, Object> variables = new HashMap<>();
+    HashMap<String, Object> oidcAuthzResponseVariableHolder = new HashMap<>();
 
     /**
      * This method is to get the variables after adding the objects.
      *
      * @return The list of variables corresponding to OAUTH Authorization Response.
      */
-    public HashMap<String, Object> getVariables() {
+    public HashMap<String, Object> getOidcAuthzResponseVariableHolder() {
 
-        return variables;
+        return oidcAuthzResponseVariableHolder;
     }
 
     @Override
     public void setAuthzResponse(Object redirectUri) {
-        this.variables.put(DAPConstants.OIDC_AUTHZ_RESPONSE, redirectUri);
+        this.oidcAuthzResponseVariableHolder.put(DAPConstants.OIDC_AUTHZ_RESPONSE, redirectUri);
     }
 }

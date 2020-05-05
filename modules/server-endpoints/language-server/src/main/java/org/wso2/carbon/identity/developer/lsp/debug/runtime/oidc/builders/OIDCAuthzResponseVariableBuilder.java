@@ -43,6 +43,6 @@ public class OIDCAuthzResponseVariableBuilder implements VariableBuilder {
 
         this.oidcAuthzResponseVariable.setAuthzResponse(variableTranslateRegistry.translateOIDCAuthzResponse(
                 arguments[5], variablesReference));
-        return new Argument<>(oidcAuthzResponseVariable.getVariables());
+        return new Argument<>(oidcAuthzResponseVariable.getOidcAuthzResponseVariableHolder());
     }
 }

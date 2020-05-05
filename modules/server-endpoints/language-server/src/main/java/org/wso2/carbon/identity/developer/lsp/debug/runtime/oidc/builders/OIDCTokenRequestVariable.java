@@ -26,22 +26,22 @@ import java.util.HashMap;
  * Variables Holds the necessary Variables for  OIDC Token Request.
  */
 public class OIDCTokenRequestVariable implements OIDCTokenRequestVariablePlan {
-
-    private HashMap<String, Object> variables = new HashMap<>();
+     
+    private HashMap<String, Object> oidcTokenRequestVariableHolder = new HashMap<>();
 
     /**
      * This method is to get the variables after adding the objects.
      *
      * @return The list of variables corresponding to OIDC Token Request.
      */
-    public HashMap<String, Object> getVariables() {
+    public HashMap<String, Object> getOidcTokenRequestVariableHolder() {
 
-        return variables;
+        return oidcTokenRequestVariableHolder;
     }
 
     @Override
     public void setTokenRequest(Object tokenRequest) {
 
-        this.variables.put(DAPConstants.OIDC_TOKEN_REQUEST, tokenRequest);
+        this.oidcTokenRequestVariableHolder.put(DAPConstants.OIDC_TOKEN_REQUEST, tokenRequest);
     }
 }
