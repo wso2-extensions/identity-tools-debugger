@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -65,15 +66,9 @@ public class OIDCTokenRequestTranslator implements VariableTranslator {
         return "NO Token Request Added.";
     }
 
-    private HashMap<String, String> getRequestParameters(HttpServletRequest request) {
+    private HashMap<String, String[]> getRequestParameters(HttpServletRequest request) {
 
-        HashMap<String, String> requestParameters = new HashMap<>();
-        while (request.getParameterNames().hasMoreElements()) {
-            String key = request.getParameterNames().nextElement();
-            String value = request.getParameter(key);
-            requestParameters.put(key, value);
-        }
-        return requestParameters;
+        return new HashMap<>(request.getParameterMap());
     }
 
     private HashMap<String, Object> getOauthClientAuthnContext(Object object) {

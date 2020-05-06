@@ -66,6 +66,7 @@ public class OIDCTokenResponseEncoder implements VariableEncoder {
                                     StringUtils.newStringUtf8(Base64.decodeBase64(jwtParts[JWT_HEADER_INDEX])));
                             jwtObject.addProperty(DAPConstants.JWT_PAYLOAD, org.apache.commons.codec.binary.
                                     StringUtils.newStringUtf8(Base64.decodeBase64(jwtParts[JWT_PAYLOAD_INDEX])));
+                            valueObject.add(DAPConstants.ID_TOKEN_DECODED, jwtObject);
                         } else {
                             throw new ParseException("Error Decoding the Jwt: InvalidJWT token", 0);
                         }
