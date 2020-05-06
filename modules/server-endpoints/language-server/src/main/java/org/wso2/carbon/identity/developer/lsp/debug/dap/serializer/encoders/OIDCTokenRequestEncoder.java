@@ -56,7 +56,7 @@ public class OIDCTokenRequestEncoder implements VariableEncoder {
     private JsonObject getOIDCTokenRequestParameters(HashMap<String, Object> tokenRequestDetails) {
 
         JsonObject valueObject = new JsonObject();
-        HashMap<String, String> requestParameters = (HashMap<String, String>)
+        HashMap<String, String[]> requestParameters = (HashMap<String, String[]>)
                 tokenRequestDetails.get(DAPConstants.JSON_KEY_FOR_REQUEST_PARAMETER);
         valueObject.add(DAPConstants.JSON_KEY_FOR_REQUEST_PARAMETER,
                 new Gson().toJsonTree(requestParameters).getAsJsonObject());
