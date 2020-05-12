@@ -80,6 +80,8 @@ public class DAPConstants {
 
     public static final String DEBUG_CONTINUE = "continue";
     public static final String DEBUG_CONNECTED = "connected";
+    public static final String DEBUG_ERROR_DEBUG_SESSION_ALIVE = "Debug session has already been started  for this  " +
+            "domain.";
     public static final String DEBUG_BREAKPOINT = "breakpoint";
     public static final String DEBUG_SET_BREAKPOINT = "setBreakpoint";
     public static final String DEBUG_VARIABLES = "variables";
@@ -120,6 +122,7 @@ public class DAPConstants {
     public static final String JSON_KEY_FOR_REQ_SEQ = "request_seq";
     public static final String JSON_KEY_FOR_REQUEST_PARAMETER = "requestParameters";
     public static final String JSON_KEY_FOR_HTTP_REQUEST_HEADERS = "httpRequestHeaders";
+    public static final String JSON_KEY_FOR_TENANT_DOMAIN = "tenantDomain";
 
     public static final String VARIABLE_TYPE_STRING = "String";
     public static final String VARIABLE_TYPE_OBJECT = "Object";
