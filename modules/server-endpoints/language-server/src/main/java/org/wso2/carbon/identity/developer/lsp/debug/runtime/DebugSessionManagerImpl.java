@@ -88,7 +88,7 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
     @Override
     public void addSession(Session session) {
 
-        if (getTenantDomain(session) != null) {
+        if (getTenantDomain(session) != null && !activeDebugSessions.containsKey(getTenantDomain(session))) {
             activeDebugSessions.put(getTenantDomain(session), createSession(session));
 
         } else {
