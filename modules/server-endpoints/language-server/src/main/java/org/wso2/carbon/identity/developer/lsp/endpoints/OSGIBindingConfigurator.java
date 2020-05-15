@@ -21,9 +21,14 @@ package org.wso2.carbon.identity.developer.lsp.endpoints;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
+import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
 import org.wso2.carbon.identity.developer.lsp.ServiceReferenceHolder;
+import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 
 import java.lang.reflect.Field;
+
+import javax.websocket.HandshakeResponse;
+import javax.websocket.server.HandshakeRequest;
 import javax.websocket.server.ServerEndpointConfig;
 
 /**
@@ -32,6 +37,13 @@ import javax.websocket.server.ServerEndpointConfig;
 public class OSGIBindingConfigurator extends ServerEndpointConfig.Configurator {
 
     private static Log log = LogFactory.getLog(OSGIBindingConfigurator.class);
+
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+
+        sec.getUserProperties().put(DAPConstants.JSON_KEY_FOR_TENANT_DOMAIN,
+                IdentityTenantUtil.getTenantDomainFromContext());
+    }
 
     @Override
     public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
@@ -91,6 +103,5 @@ public class OSGIBindingConfigurator extends ServerEndpointConfig.Configurator {
 
         return (T) result;
     }
-
 
 }
