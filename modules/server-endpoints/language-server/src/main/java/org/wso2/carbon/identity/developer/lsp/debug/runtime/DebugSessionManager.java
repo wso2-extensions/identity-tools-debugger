@@ -35,7 +35,14 @@ public interface DebugSessionManager {
      *
      * @param session The current websocket session.
      */
-    void addSession(Session session);
+
+    /**
+     * Adds a new debug session to manage.
+     *
+     * @param session The current websocket session.
+     * @param tenantDomain The current tenant Domain.
+     */
+    void addSession(Session session, String tenantDomain);
 
     /**
      * Handles the debug request.
@@ -64,8 +71,8 @@ public interface DebugSessionManager {
     /**
      * Get DebugSession using session.
      *
-     * @param tenantDomain The current tenant domain.
+     * @param session The current websocket session.
      * @return The current debug session.
      */
-    DebugSession getDebugSession(String tenantDomain);
+    DebugSession getDebugSession(Session session);
 }

@@ -38,6 +38,7 @@ public class DebugSession {
     private static final Log log = LogFactory.getLog(DebugSession.class);
 
     private Session session;
+    private String tenantDomain;
     private Map<String, BreakpointInfo> breakpointInfoMap = new HashMap<>();
     private MethodContext currentMethodContext;
     private List<Object> calledObjectStack = new ArrayList<>();
@@ -197,4 +198,23 @@ public class DebugSession {
         }
     }
 
+    /**
+     * get current Tenant Domain.
+     *
+     * @return current Tenant Domain.
+     */
+    public String getTenantDomain() {
+
+        return tenantDomain;
+    }
+
+    /**
+     * set current Tenant Domain.
+     *
+     * @param tenantDomain current Tenant Domain.
+     */
+    public void setTenantDomain(String tenantDomain) {
+
+        this.tenantDomain = tenantDomain;
+    }
 }

@@ -43,6 +43,7 @@ import org.wso2.carbon.identity.java.agent.host.InterceptionEventType;
 import org.wso2.carbon.identity.java.agent.host.MethodContext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,8 @@ import javax.websocket.Session;
 public class DebugSessionManagerImpl implements DebugSessionManager, InterceptionListener {
 
     private static final Log log = LogFactory.getLog(DebugSessionManagerImpl.class);
-    private Map<String, DebugSession> activeDebugSessions = new HashMap<>();
+    private Map<String, DebugSession> tenantActiveDebugSessions = new HashMap<>();
+    private Map<Session, DebugSession> activeDebugSessions = new HashMap<>();
     private InterceptionEngine interceptionEngine;
     private VariableTranslateRegistry variableTranslateRegistry = new VariableTranslateRegistry();
 
@@ -72,9 +74,9 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
     }
 
     @Override
-    public DebugSession getDebugSession(String tenantDomain) {
+    public DebugSession getDebugSession(Session session) {
 
-        return activeDebugSessions.get(tenantDomain);
+        return activeDebugSessions.get(session);
     }
 
     /**
@@ -86,11 +88,12 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
     }
 
     @Override
-    public void addSession(Session session) {
+    public void addSession(Session session, String tenantDomain) {
 
-        if (getTenantDomain(session) != null && !activeDebugSessions.containsKey(getTenantDomain(session))) {
-            activeDebugSessions.put(getTenantDomain(session), createSession(session));
-
+        if (!tenantActiveDebugSessions.containsKey(tenantDomain)) {
+            DebugSession debugSession = createSession(session, tenantDomain);
+            tenantActiveDebugSessions.put(tenantDomain, debugSession);
+            activeDebugSessions.put(session, debugSession);
         } else {
             try {
                 JsonDap jsonDap = new JsonDap();
@@ -101,7 +104,6 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
 
             } catch (IOException ex) {
                 log.error("Error on Encoding the message", ex);
-
             }
 
         }
@@ -110,7 +112,7 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
     @Override
     public Response handle(Session session, Request request) {
 
-        DebugSession debugSession = this.getDebugSession(getTenantDomain(session));
+        DebugSession debugSession = this.getDebugSession(session);
         if (debugSession == null) {
             log.error("No session found in the active session list");
             return null;
@@ -213,16 +215,17 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
             jsonDap.init();
             String text = jsonDap.encode(message);
             websocketSession.getBasicRemote().sendText(text);
-            this.getDebugSession(getTenantDomain(websocketSession)).suspendCurrentThread();
+            this.getDebugSession(websocketSession).suspendCurrentThread();
         } catch (IOException e) {
+            this.removeSession(websocketSession);
             log.error("Error sending back a request to client", e);
         }
     }
 
     private DebugSession findInterestedDebugSession() {
 
-        if (activeDebugSessions.containsKey(IdentityTenantUtil.getTenantDomainFromContext())) {
-            return activeDebugSessions.get(IdentityTenantUtil.getTenantDomainFromContext());
+        if (tenantActiveDebugSessions.containsKey(IdentityTenantUtil.getTenantDomainFromContext())) {
+            return tenantActiveDebugSessions.get(IdentityTenantUtil.getTenantDomainFromContext());
         }
         return null;
     }
@@ -233,17 +236,30 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
      * @param session The websocket session.
      * @return debugSession Which holds the currently initiated debug session.
      */
-    private DebugSession createSession(Session session) {
+
+    /**
+     * Creates a new debug session associated with current session.
+     *
+     * @param session      The websocket session
+     * @param tenantDomain current Tenant Domain.
+     * @return debugSession Which holds the currently initiated debug session.
+     */
+    private DebugSession createSession(Session session, String tenantDomain) {
 
         DebugSession debugSession = new DebugSession();
         debugSession.setSession(session);
+        debugSession.setTenantDomain(tenantDomain);
         return debugSession;
     }
 
     @Override
     public void removeSession(Session session) {
 
-        activeDebugSessions.remove(session);
+        if (activeDebugSessions.containsKey(session)) {
+            DebugSession debugSession = activeDebugSessions.get(session);
+            activeDebugSessions.remove(session);
+            tenantActiveDebugSessions.remove(debugSession.getTenantDomain());
+        }
     }
 
     private Response setBreakpoints(DebugSession debugSession, BreakpointRequest request) {
@@ -269,14 +285,4 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
         DebugListenerConfigurator configurator = new DebugListenerConfigurator(this);
         configurator.configure(interceptionEngine);
     }
-
-    private String getTenantDomain(Session session) {
-
-        List<String> tenantList = session.getRequestParameterMap().get(DAPConstants.JSON_KEY_FOR_TENANT_DOMAIN);
-        if (tenantList != null && !tenantList.isEmpty()) {
-            return tenantList.get(0);
-        }
-        return null;
-    }
-
 }

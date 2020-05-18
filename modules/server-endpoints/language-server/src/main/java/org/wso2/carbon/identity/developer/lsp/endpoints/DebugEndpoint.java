@@ -20,6 +20,8 @@ package org.wso2.carbon.identity.developer.lsp.endpoints;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.context.PrivilegedCarbonContext;
+import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
 import org.wso2.carbon.identity.developer.lsp.debug.DAPConstants;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.ProtocolMessage;
 import org.wso2.carbon.identity.developer.lsp.debug.dap.messages.Request;
@@ -28,12 +30,18 @@ import org.wso2.carbon.identity.developer.lsp.debug.dap.serializer.JsonDap;
 import org.wso2.carbon.identity.developer.lsp.debug.runtime.DebugSessionManager;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.websocket.EndpointConfig;
+import javax.websocket.HandshakeResponse;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.HandshakeRequest;
 import javax.websocket.server.ServerEndpoint;
+import javax.websocket.server.ServerEndpointConfig;
 
 /**
  * The entry endpoint for language server.
@@ -61,9 +69,10 @@ public class DebugEndpoint {
      * @param session The web socket session.
      */
     @OnOpen
-    public void onOpen(Session session) {
+    public void onOpen(Session session, EndpointConfig config) {
 
-        debugSessionManager.addSession(session);
+        debugSessionManager.addSession(session,
+                (String) config.getUserProperties().get(DAPConstants.JSON_KEY_FOR_TENANT_DOMAIN));
         try {
             JsonDap jsonDap = new JsonDap();
             jsonDap.init();
@@ -71,6 +80,7 @@ public class DebugEndpoint {
             String text = jsonDap.encode(message);
             session.getBasicRemote().sendText(text);
         } catch (IOException ex) {
+            debugSessionManager.removeSession(session);
             log.error("Error on Encoding the message", ex);
         }
     }
@@ -103,6 +113,7 @@ public class DebugEndpoint {
             }
         } catch (IOException ex) {
             log.error("Error on decoding the message", ex);
+            debugSessionManager.removeSession(session);
             throw ex;
         }
     }
@@ -114,8 +125,9 @@ public class DebugEndpoint {
      */
 
     @OnError
-    public void onError(Throwable e) {
+    public void onError(Session session, Throwable e) {
 
+        debugSessionManager.removeSession(session);
         log.error("Web socket session error", e);
     }
 
