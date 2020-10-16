@@ -43,9 +43,7 @@ import org.wso2.carbon.identity.java.agent.host.InterceptionEventType;
 import org.wso2.carbon.identity.java.agent.host.MethodContext;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.websocket.Session;
@@ -101,7 +99,6 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
                 ProtocolMessage message = new ProtocolMessage(DAPConstants.DEBUG_ERROR_DEBUG_SESSION_ALIVE);
                 String text = jsonDap.encode(message);
                 session.getBasicRemote().sendText(text);
-
             } catch (IOException ex) {
                 log.error("Error on Encoding the message", ex);
             }
@@ -195,10 +192,8 @@ public class DebugSessionManagerImpl implements DebugSessionManager, Interceptio
         switch (result.getInstructionType()) {
             case STOP:
                 return createStoppedEvent(methodContext, debugSession, result);
-
         }
         return null;
-
     }
 
     private StoppedEvent createStoppedEvent(MethodContext methodContext, DebugSession debugSession,
