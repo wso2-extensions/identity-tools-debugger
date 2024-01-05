@@ -224,7 +224,7 @@
 
 
     <properties>
-        <carbon.identity.framework.version>5.17.76</carbon.identity.framework.version>
+        <carbon.identity.framework.version>5.20.254</carbon.identity.framework.version>
         <antlr4.version>4.7</antlr4.version>
         <commons-io.version>2.11.0</commons-io.version>
         <identity.inbound.auth.saml.version>5.8.3</identity.inbound.auth.saml.version>
